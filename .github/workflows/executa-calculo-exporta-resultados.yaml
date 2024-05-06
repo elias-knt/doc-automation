@@ -22,23 +22,21 @@ jobs:
       with:
         python-version: '3.11' # Usar a versão 3.11 do Python
 
-    - name: Run calculation script
-      run: python calculo.py > resultado.txt
+    - name: Run calculation script and save result to resultado.txt
+      run: |
+        python calculo.py > $GITHUB_WORKSPACE/resultado.txt
 
     - name: Display result
-      run: cat resultado.txt
+      run: cat $GITHUB_WORKSPACE/resultado.txt
 
     - name: Configure Git user and email
       run: |
         git config --global user.email "elias.andrade@konecty.com"
         git config --global user.name "GitHub Actions"
 
-    - name: Move resultado.txt to root directory
-      run: mv resultado.txt /github/workspace/resultado.txt
-
     - name: Add resultado.txt to Git
       run: |
-        git add /github/workspace/resultado.txt
+        git add $GITHUB_WORKSPACE/resultado.txt
         git commit -m "Add resultado.txt"
 
     - name: Push changes
