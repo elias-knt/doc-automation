@@ -33,9 +33,12 @@ jobs:
         git config --global user.email "elias.andrade@konecty.com"
         git config --global user.name "GitHub Actions"
 
+    - name: Move resultado.txt to root directory
+      run: mv resultado.txt /github/workspace/resultado.txt
+
     - name: Add resultado.txt to Git
       run: |
-        git add resultado.txt
+        git add /github/workspace/resultado.txt
         git commit -m "Add resultado.txt"
 
     - name: Push changes
