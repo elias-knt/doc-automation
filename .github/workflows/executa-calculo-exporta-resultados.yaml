@@ -35,7 +35,7 @@ jobs:
 
     - name: Add resultado.txt to Git
       run: |
-        git add resultado.txt
+        git add /github/workspace/resultado.txt
         git commit -m "Add resultado.txt"
 
     - name: Push changes
