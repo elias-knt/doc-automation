@@ -1,0 +1,37 @@
+name: Execute e Exporte Calculo
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  execute_export_calculo:
+    name: Execute e Exporte Calculo
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # Use a versão desejada do Python
+
+    - name: Run calculation script
+      run: python calculo.py > resultado.txt
+
+    - name: Display result
+      run: cat resultado.txt
+
+    - name: Add resultado.txt to Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add resultado.txt
+        git commit -m "Add resultado.txt"
+        git push origin main
