@@ -17,10 +17,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
+    - name: Set up Python 3.11
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x' # Use a versão desejada do Python
+        python-version: '3.11' # Usar a versão 3.11 do Python
 
     - name: Run calculation script
       run: python calculo.py > resultado.txt
@@ -35,7 +35,7 @@ jobs:
 
     - name: Add resultado.txt to Git
       run: |
-        git add /github/workspace/resultado.txt
+        git add resultado.txt
         git commit -m "Add resultado.txt"
 
     - name: Push changes
